@@ -91,6 +91,11 @@ class TemplateProcessor
         }));
 
         // SF ---
+        // Return day of week in lowercase 'monday'
+        $twig->addFilter(new Twig_SimpleFilter('sf_day_of_week', function () {
+            return strtolower(date('l'));
+        }));
+
         $twig->addFilter(new Twig_SimpleFilter('sf_load_json', function ($file_path) {
             $json_data = file_get_contents($file_path);
             return json_decode($json_data, true);
