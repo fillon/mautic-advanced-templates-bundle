@@ -89,6 +89,12 @@ class TemplateProcessor
         $twig->addFilter(new Twig_SimpleFilter('rss', function () {
             return $this->feedFactory->getItems($this->lead['id'], func_get_args());
         }));
+
+        // SF ---
+        $twig->addFilter(new Twig_SimpleFilter('sf_load_json', function ($file_path) {
+            $json_data = file_get_contents($file_path);
+            return json_decode($json_data, true);
+        }));
     }
 
     private function processTwigBlock($lead, $tokens = null)
